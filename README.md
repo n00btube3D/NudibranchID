@@ -20,6 +20,7 @@ To set up the project, follow these steps:
    ```sh
    python3 -m venv venv
    ```
+NOTE: This project is coded on Python 3.12, you may want to do the same.
 
 3. Activate the virtual environment:
 
