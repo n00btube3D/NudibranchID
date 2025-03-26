@@ -174,18 +174,32 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         pixmap, textPred = cropAndPredict(pixmap.pixmap(), rectangle, 0.3, 5)
 
+        # textPred looks like this
+        # ['species 1', ...]
+        # Transform it into:
+        # ['<a href="google.com/search?q=species+1">species 1</a>', ...]
+
+        finalTextList = list(
+            map(
+                lambda x: f"<a href='google.com/search?q={x.replace(' ', '+')}&tbm=isch'>{x}</a>",
+                textPred,
+            )
+        )
+
         # Consolidate results and send them to the subwindow.
         resultWindow = SubWindow(self)
         item = QGraphicsPixmapItem(pixmap)
         resultWindow.graphicsScene.addItem(item)
         resultWindow.setWindowTitle("Result")
 
-        if (n_pred := len(textPred)) > 0:
+        if (n_pred := len(finalTextList)) > 0:
             if n_pred == 1:
-                resultWindow.label.setText(f"Top 1 prediction: {str(textPred)[1:-1]}")
+                resultWindow.label.setText(
+                    f"Top 1 prediction: {str(finalTextList)[1:-1]}"
+                )
             else:
                 resultWindow.label.setText(
-                    f"Top {n_pred} predictions: {str(textPred)[1:-1]}"
+                    f"Top {n_pred} predictions: {str(finalTextList)[1:-1]}"
                 )
         else:
             resultWindow.label.setText(
@@ -242,7 +256,10 @@ class SubWindow(QDialog, Ui_Form):
     def __init__(self, parent):
         super().__init__(parent=parent)
         self.setupUi(self)
-        self.label.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
+        self.label.setTextInteractionFlags(
+            Qt.TextInteractionFlag.LinksAccessibleByMouse,
+        )
+        self.label.setOpenExternalLinks(True)
         self.graphicsScene = QGraphicsScene(parent=self)
         self.graphicsView.setScene(self.graphicsScene)
 
