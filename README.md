@@ -1,6 +1,6 @@
 # NudibranchID: Nudibranch Identification using YOLOv11
 
-This is my final year project that focuses on identifying nudibranchs using the YOLOv11 model. It can classify over 1000 species of Nudibranches, with top-1 accuracy of 77.9% and top-5 accuracy of 91%.
+This is my final year project that focuses on identifying nudibranchs using the YOLOv11 model. It can classify over 1000 species of Nudibranches, with top-1 accuracy of 90% and top-5 accuracy of 97.5%.
 
 Even if the model make mistakes, it can still reliably get the genus correct, narrowing your search on the beautiful nudibranch you observed.
 
@@ -54,6 +54,6 @@ helper_scripts contains a script for regenerating the Python files for the UI.
 
 ## Citations
 
-[1] iNaturalist Licensed Observation Images was accessed on DATE from https://registry.opendata.aws/inaturalist-open-data.
+[1] iNaturalist Licensed Observation Images was accessed on 2024-10-21 from https://registry.opendata.aws/inaturalist-open-data.
 
 [2] Jocher, G., Qiu, J., & Chaurasia, A. (2023). Ultralytics YOLO (Version 8.0.0) [Computer software]. https://github.com/ultralytics/ultralytics
