@@ -172,7 +172,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if isinstance(item, QGraphicsRectItem):
                 rectangle = item
 
-        pixmap, textPred = cropAndPredict(pixmap.pixmap(), rectangle, 0.3, 5)
+        pixmap, textPred = cropAndPredict(pixmap.pixmap(), rectangle, 0.5, 5)
 
         # textPred looks like this
         # ['species 1', ...]
